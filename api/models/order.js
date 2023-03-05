@@ -1,9 +1,24 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
-const orderSchema = mongoose.Schema({
-    _id: mongoose.Schema.Types.ObjectId,
-    product: { type: mongoose.Schema.Types.ObjectId, ref: 'Product', required: true },
-    quantity: { type: Number, default: 1 }
+const orderScheme = mongoose.Schema({
+  _id: mongoose.Schema.Types.ObjectId,
+  payment_details: {},
+  payment_type: { type: String, required: true },
+  amount: { type: String, required: true },
+  server: { type: String, required: true },
+  price: { type: Number, required: true },
+  ingame_name: { type: String, required: true },
+  status: { type: String },
+  customer: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+    required: true,
+  },
+  product: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Product",
+    required: true,
+  },
 });
 
-module.exports = mongoose.model('Order', orderSchema);
+module.exports = mongoose.model("Order", orderScheme);
