@@ -13,7 +13,7 @@ const userSchema = mongoose.Schema({
   firstname: { type: String, require: true },
   lastname: { type: String, require: true },
   phone: { type: String, require: true },
-  role: { type: String, unique: true },
+  role: { type: String },
   verified: { type: Boolean, required: true },
   password: { type: String, required: true },
   // avatar: { type: String },

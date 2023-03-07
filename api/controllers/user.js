@@ -125,7 +125,7 @@ exports.signUp = (req, res, next) => {
                 process.env.AUTH_USER,
                 req.body.email,
                 "Platform: Email verification",
-                `Press <a href=http://localhost:3000/user/verify/${token}> here </a> to verify your account.`
+                `Press <a href=http://localhost:3000/verify/${token}> here </a> to verify your account.`
               )
               .then(() => {
                 user
@@ -151,9 +151,12 @@ exports.signUp = (req, res, next) => {
 };
 
 exports.userVerification = (req, res, next) => {
-  User.update(
-    { confirmationCode: req.params.token },
-    { $set: { verified: true } }
+  let email = jwt.verify(req.params.token, process.env.PRIVATE_KEY).email;
+
+  User.findOneAndUpdate(
+    { email: email },
+    { $set: { verified: true } },
+    { new: true }
   )
     .exec()
     .then(() => res.status(200).json({ message: "Account verified!" }))

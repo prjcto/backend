@@ -24,7 +24,7 @@ router.post("/signup", signUp);
 router.post("/signin", signIn);
 
 // oath features
-router.get("/verify/:token", userVerification);
+router.patch("/verify/:token", userVerification);
 router.get("/forgotpassword/:email", forgotPassword);
 router.patch("/:userId", checkAuth, updateUser);
 router.patch("/changepassword/:userId", checkAuth, changePassword);
