@@ -39,6 +39,22 @@ exports.addProduct = (req, res, next) => {
     .catch((err) => res.status(500).json({ error: err }));
 };
 
+exports.updateProduct = (req, res, next) => {
+  const updateOps = {};
+  for (const ops of req.body) {
+    updateOps[ops.propName] = ops.value;
+  }
+
+  Product.update({ _id: req.params.productId }, { $set: updateOps })
+    .exec()
+    .then(() => {
+      res.status(200).json({
+        message: "Product updated",
+      });
+    })
+    .catch((err) => res.status(500).json({ error: err }));
+};
+
 exports.deleteProduct = (req, res, next) => {
   Product.deleteOne({ _id: req.params.productId })
     .exec()

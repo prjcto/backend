@@ -13,10 +13,14 @@ exports.getUsers = (req, res, next) => {
     .populate({
       path: "orders",
       select:
-        "_id payment_type payment_details ammout server price ingame_name status customer product",
+        "_id payment_type payment_details amount server price ingame_name status customer product",
       populate: {
         path: "customer",
         select: "_id username email firstname lastname",
+      },
+      populate: {
+        path: "product",
+        select: "_id name price stock category",
       },
     })
     .exec()
@@ -31,10 +35,14 @@ exports.getUser = (req, res, next) => {
     .populate({
       path: "orders",
       select:
-        "_id payment_type payment_details ammout server price ingame_name status customer product",
+        "_id payment_type payment_details amount server price ingame_name status customer product",
       populate: {
         path: "customer",
         select: "_id username email firstname lastname",
+      },
+      populate: {
+        path: "product",
+        select: "_id name price stock category",
       },
     })
     .exec()

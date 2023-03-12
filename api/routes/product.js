@@ -3,8 +3,9 @@ const router = express.Router();
 const {
   getProducts,
   getProduct,
-  deleteProduct,
   addProduct,
+  updateProduct,
+  deleteProduct,
 } = require("../controllers/product");
 
 const checkAuth = require("../middleware/check-auth.js");
@@ -12,8 +13,8 @@ const checkAuth = require("../middleware/check-auth.js");
 router.get("/", getProducts);
 router.get("/:productId", getProduct);
 
-router.post("/", addProduct);
-
+router.post("/", checkAuth, addProduct);
+router.patch("/:productId", checkAuth, updateProduct);
 router.delete("/:productId", checkAuth, deleteProduct);
 
 module.exports = router;

@@ -7,6 +7,8 @@ const productScheme = mongoose.Schema({
     {
       server: { type: String },
       price_usdt: { type: Number },
+      price_cih: { type: Number },
+      price_skrill: { type: Number },
     },
   ],
   category: { type: String },
