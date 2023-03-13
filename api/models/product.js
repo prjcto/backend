@@ -9,6 +9,7 @@ const productScheme = mongoose.Schema({
       price_usdt: { type: Number },
       price_cih: { type: Number },
       price_skrill: { type: Number },
+      status: { type: String },
     },
   ],
   category: { type: String },

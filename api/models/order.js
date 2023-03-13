@@ -3,11 +3,11 @@ const mongoose = require("mongoose");
 const orderScheme = mongoose.Schema({
   _id: mongoose.Schema.Types.ObjectId,
   payment_details: {},
-  payment_type: { type: String, required: true },
-  amount: { type: String, required: true },
-  server: { type: String, required: true },
-  price: { type: Number, required: true },
-  ingame_name: { type: String, required: true },
+  payment_type: { type: String },
+  amount: { type: String },
+  server: { type: String },
+  price: { type: Number },
+  ingame_name: { type: String },
   status: { type: String },
   customer: {
     type: mongoose.Schema.Types.ObjectId,
@@ -19,6 +19,17 @@ const orderScheme = mongoose.Schema({
     ref: "Product",
     required: true,
   },
+  youpay: {
+    server: { type: String },
+    quantity: { type: Number },
+    character: { type: String },
+  },
+  youreceive: {
+    server: { type: String },
+    quantity: { type: Number },
+    character: { type: String },
+  },
+  code: { type: String },
 });
 
 module.exports = mongoose.model("Order", orderScheme);

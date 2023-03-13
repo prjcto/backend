@@ -3,7 +3,7 @@ const Product = require("../models/product");
 
 exports.getProducts = (req, res, next) => {
   Product.find()
-    .select("_id name price stock category")
+    .select("_id name price stock category ")
     .exec()
     .then((docs) => res.status(200).json(docs))
     .catch((err) => res.status(500).json({ error: err }));
@@ -26,7 +26,6 @@ exports.addProduct = (req, res, next) => {
     price: req.body.price,
     stock: req.body.stock,
     category: req.body.category,
-    // image: req.file,
   });
 
   product
